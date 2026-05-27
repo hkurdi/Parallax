@@ -13,6 +13,7 @@ export interface ModelSpec {
   accent: string
   inputCostPer1k: number
   outputCostPer1k: number
+  maxTemperature: number
 }
 
 export interface ChatMessage {

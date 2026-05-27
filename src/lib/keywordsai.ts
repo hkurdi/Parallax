@@ -57,6 +57,10 @@ export async function runCompletion({
   onToken,
 }: RunCompletionParams): Promise<RunCompletionResult> {
   const startedAt = performance.now()
+  const spec = MODEL_BY_ID[model]
+  const cappedTemperature = spec
+    ? Math.min(Math.max(temperature, 0), spec.maxTemperature)
+    : temperature
 
   const res = await fetch(`${KEYWORDS_AI_BASE}/chat/completions`, {
     method: 'POST',
@@ -64,7 +68,7 @@ export async function runCompletion({
     body: JSON.stringify({
       model,
       messages,
-      temperature,
+      temperature: cappedTemperature,
       max_tokens: maxTokens,
       stream: true,
       stream_options: { include_usage: true },

@@ -8,6 +8,7 @@ export const MODELS: ReadonlyArray<ModelSpec> = [
     accent: '#10a37f',
     inputCostPer1k: 0.00125,
     outputCostPer1k: 0.01,
+    maxTemperature: 2,
   },
   {
     id: 'groq/llama-3.3-70b-versatile',
@@ -16,6 +17,7 @@ export const MODELS: ReadonlyArray<ModelSpec> = [
     accent: '#f55036',
     inputCostPer1k: 0.00059,
     outputCostPer1k: 0.00079,
+    maxTemperature: 2,
   },
   {
     id: 'claude-haiku-4-5-20251001',
@@ -24,6 +26,7 @@ export const MODELS: ReadonlyArray<ModelSpec> = [
     accent: '#d97757',
     inputCostPer1k: 0.001,
     outputCostPer1k: 0.005,
+    maxTemperature: 1,
   },
   {
     id: 'gemini/gemini-2.5-flash-lite',
@@ -32,6 +35,7 @@ export const MODELS: ReadonlyArray<ModelSpec> = [
     accent: '#4285f4',
     inputCostPer1k: 0.000075,
     outputCostPer1k: 0.0003,
+    maxTemperature: 2,
   },
 ]
 

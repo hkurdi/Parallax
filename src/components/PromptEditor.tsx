@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown, Play, Loader2, Square } from 'lucide-react'
 import { useParallaxStore } from '@/store/useParallaxStore'
-import { MODELS } from '@/lib/models'
+import { MODELS, MODEL_BY_ID } from '@/lib/models'
 
 interface PromptEditorProps {
   running: boolean
@@ -20,6 +20,14 @@ export function PromptEditor({ running, onRun, onCancel }: PromptEditorProps) {
   }, [settings.userPrompt])
 
   const canRun = settings.userPrompt.trim().length > 0 && settings.models.length > 0
+
+  const clampedModels = useMemo(
+    () =>
+      settings.models
+        .map((id) => MODEL_BY_ID[id])
+        .filter((m) => m && settings.temperature > m.maxTemperature),
+    [settings.models, settings.temperature],
+  )
 
   return (
     <div className="flex h-full flex-col">
@@ -136,6 +144,14 @@ export function PromptEditor({ running, onRun, onCancel }: PromptEditorProps) {
                 } as React.CSSProperties
               }
             />
+            {clampedModels.length > 0 && (
+              <p className="text-mono mt-1.5 text-[10px] leading-snug text-[var(--color-bone-500)]">
+                clamped to {clampedModels[0].maxTemperature.toFixed(1)} for{' '}
+                <span className="text-[var(--color-bone-300)]">
+                  {clampedModels.map((m) => m.label).join(', ')}
+                </span>
+              </p>
+            )}
           </div>
           <div>
             <div className="flex items-center justify-between mb-2">

@@ -1,7 +1,7 @@
 import { runCompletion } from '@/lib/keywordsai'
-import type { EvaluationScore } from '@/types'
+import type { EvaluationScore, ModelId } from '@/types'
 
-const EVALUATOR_MODEL = 'claude-haiku-4-5-20251001'
+const EVALUATOR_MODEL: ModelId = 'claude-haiku-4-5-20251001'
 
 const EVALUATOR_SYSTEM = `You are a strict, calibrated LLM response evaluator.
 Score each response on a 1–10 integer scale (10 = perfect).
@@ -58,7 +58,7 @@ export async function evaluateResponse(
   response: string,
 ): Promise<EvaluationScore> {
   const result = await runCompletion({
-    model: EVALUATOR_MODEL as never,
+    model: EVALUATOR_MODEL,
     messages: [
       { role: 'system', content: EVALUATOR_SYSTEM },
       { role: 'user', content: buildUserPrompt(originalPrompt, response) },
