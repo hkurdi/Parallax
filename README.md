@@ -4,7 +4,7 @@
 
 A prompt intelligence platform for developers — a full debugging and experimentation environment for LLM prompts, powered by [Keywords AI](https://docs.keywordsai.co) for model routing, observability, and cost tracking.
 
-Built as a scientific instrument, not a marketing page. Editorial typography (DM Serif Display), monospace data (JetBrains Mono), and a single accent — electric amber — on near-black.
+Built as a scientific instrument, not a marketing page. And to get this internship lol, hi guys.
 
 ---
 
@@ -34,40 +34,6 @@ Routed through Keywords AI. Costs are estimated client-side from the spec table 
 | `gemini/gemini-2.5-flash-lite` | Google | $0.000075 / $0.0003 |
 
 The **Insights evaluator** uses `claude-haiku-4-5-20251001` (configurable in `src/lib/evaluator.ts`). Since Haiku 4.5 is also in the lineup, evaluator self-scoring is possible — swap the evaluator if you want strict independence.
-
----
-
-## Setup
-
-```bash
-# 1. Install
-npm install
-
-# 2. Configure the Keywords AI key
-cp .env.example .env
-# Edit .env and add your VITE_KEYWORDS_AI_API_KEY
-
-# 3. Run the dev server
-npm run dev
-# → http://localhost:5173
-```
-
-### Environment variables
-
-| Variable | Required | Purpose |
-| --- | --- | --- |
-| `VITE_KEYWORDS_AI_API_KEY` | yes (for live runs) | Bearer token for `https://api.keywordsai.co/api/*`. The app boots without it but disables Lab runs and Observatory log fetches. |
-
----
-
-## Scripts
-
-| Command | What it does |
-| --- | --- |
-| `npm run dev` | Start the Vite dev server |
-| `npm run build` | Type-check (`tsc -b`) and produce a production build in `dist/` |
-| `npm run typecheck` | Type-check only |
-| `npm run preview` | Preview the production build locally |
 
 ---
 
@@ -107,22 +73,3 @@ src/
   App.tsx                # Top bar + sidebar + animated <Routes/>
   main.tsx               # React 19 root + BrowserRouter
 ```
-
----
-
-## Deployment (Netlify)
-
-A `netlify.toml` ships at the repo root. Connect the repo, set `VITE_KEYWORDS_AI_API_KEY` as a build env var in Netlify's site settings (Site → Build & deploy → Environment), and push — the publish dir is `dist/` and the SPA redirect rule sends all unknown paths to `index.html`.
-
-```bash
-# Local production preview
-npm run build && npm run preview
-```
-
----
-
-## Design notes
-
-Aesthetic direction: **electric amber `#f59e0b` on ink `#0a0a0b`**. Three typefaces — DM Serif Display for section titles, Geist for UI chrome, JetBrains Mono for every number, code block, and metric. Borders are hairlines at `#ffffff0a–14`. Cards use a low-opacity glass with `backdrop-filter: blur(14px) saturate(120%)` and a sharp 1px border. Streaming responses get a subtle `scanline` overlay and an amber `cursor-bar`. View transitions are a 200ms fade-slide. The sidebar's active item uses a Framer `layoutId` morph.
-
-No purple. No generic rounded-3xl. No Inter.
