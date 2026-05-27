@@ -1,0 +1,25 @@
+node_modules
+dist
+dist-ssr
+*.local
+.env
+.env.local
+.DS_Store
+.vite
+*.log
+.vscode/*
+!.vscode/extensions.json
+.idea
+
+# Build artifacts
+*.tsbuildinfo
+
+# Claude Code (local-only)
+.claude/
+CLAUDE.md
+.cursor/
+.aider*
+.continue/
+
+# Netlify
+.netlify/
